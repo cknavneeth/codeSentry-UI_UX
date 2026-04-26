@@ -1,0 +1,141 @@
+<div fxLayout="column wrap" fxLayoutAlign="start stretch" [fxShow]="true">
+  <div fxLayout="row wrap" fxLayoutAlign="start stretch" [fxShow]="true">
+    <div>
+    </div>
+  </div>
+  <div fxLayout="row wrap" style="display:flex;gap:24px;" class="row" fxLayoutAlign="start stretch" [fxShow]="true">
+    <div class="left-section">
+      <div class="left-panel">
+        <div class="panel-header">
+          <h2 class="panel-title">&#x1F9EA; CodeSentry</h2>
+          <p class="panel-subtitle">Paste your code or describe your feature</p>
+        </div>
+
+        <div class="textarea-group">
+          <label class="input-label">&#x1F4C4; Input / Feature Description</label>
+          <textarea class="styled-textarea" placeholder="Describe your feature or paste input here..." [(ngModel)]="page.story"></textarea>
+        </div>
+
+        <div class="textarea-group">
+          <label class="input-label">&#x1F4BB; Code Snippet</label>
+          <textarea class="styled-textarea" placeholder="Paste your code snippet here..." [(ngModel)]="page.snippet"></textarea>
+        </div>
+
+        <div class="button-group">
+          <button class="btn btn-analyse" (click)="analyse()">&#x1F50D; Analyse</button>
+          <button class="btn btn-generate" (click)="generateCase()">&#x26A1; Generate Test Cases</button>
+        </div>
+      </div>
+    </div>
+    <div class="right-section">
+      <div class="right-panel">
+        <div class="response-header">
+          <h2 class="panel-title">&#x1F4CB; Analysis Result!</h2>
+          <span class="status-badge" [ngClass]="(page.result || page.testCases) ? &apos;badge-done&apos; : &apos;badge-ready&apos;">
+          {{ (page.result || page.testCases) ? &apos;Done&apos; : &apos;Ready&apos; }}
+          </span>
+        </div>
+        <div class="response-box">
+
+          <!-- Empty State — hide when either result or testCases exists -->
+          <div class="empty-state" *ngIf="!page.result &amp;&amp; !page.testCases">
+            <div class="empty-icon">&#x1F916;</div>
+            <p>Your analysis will appear here...</p>
+            <span>Click &quot;Analyze&quot; to begin</span>
+          </div>
+
+          <!-- Analysis Result -->
+          <div class="response-content" *ngIf="page.result">
+            <div class="confidence-card">
+              <div class="confidence-label">
+                <span>&#x1F3AF; Confidence Score</span>
+                <strong>{{ page.result.confidence }}</strong>
+              </div>
+              <div class="confidence-track">
+                <div class="confidence-fill" [style.width]="page.result.confidence"></div>
+              </div>
+            </div>
+            <div class="result-card card-warning">
+              <div class="card-heading">
+                <span class="card-icon">&#x26A0;&#xFE0F;</span>
+                <h3>Missing Conditions</h3>
+              </div>
+              <ul class="result-list">
+                <li *ngFor="let item of page.result.missingConditions">{{ item }}</li>
+              </ul>
+            </div>
+            <div class="result-card card-danger">
+              <div class="card-heading">
+                <span class="card-icon">&#x1F41B;</span>
+                <h3>Issues Found</h3>
+              </div>
+              <ul class="result-list">
+                <li *ngFor="let item of page.result.issues">{{ item }}</li>
+              </ul>
+            </div>
+            <div class="result-card card-success">
+              <div class="card-heading">
+                <span class="card-icon">&#x1F4A1;</span>
+                <h3>Suggestions</h3>
+              </div>
+              <ul class="result-list">
+                <li *ngFor="let item of page.result.suggestions">{{ item }}</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Test Cases -->
+          <div class="response-content" *ngIf="page.testCases">
+            <div class="testcase-wrapper">
+              <div class="testcase-header-bar">
+                <span>&#x1F9EA; Generated Test Cases</span>
+                <span class="test-count">{{ page.testCases.length }} cases</span>
+              </div>
+
+              <div class="test-case-item" *ngFor="let item of page.testCases; let i = index">
+
+                <div class="tci-left" [ngClass]="item.passes ? &apos;left-pass&apos; : &apos;left-fail&apos;">
+                  <span class="tci-number">#{{ i + 1 }}</span>
+                  <span class="tci-icon">{{ item.passes ? &apos;&#x2705;&apos; : &apos;&#x274C;&apos; }}</span>
+                </div>
+
+                <div class="tci-right">
+                  <div class="tci-top">
+                    <span class="tci-title">{{ item.title }}</span>
+                    <span class="tci-type type-{{ item.type | lowercase }}">{{ item.type }}</span>
+                    <span class="tci-badge" [ngClass]="item.passes ? &apos;badge-pass&apos; : &apos;badge-fail&apos;">
+                    {{ item.passes ? &apos;Pass&apos; : &apos;Fail&apos; }}
+                    </span>
+                  </div>
+
+                  <div class="tci-fields">
+                    <div class="tci-field">
+                      <span class="tci-field-icon">&#x1F4E5;</span>
+                      <div>
+                        <span class="tci-field-label">Input</span>
+                        <span class="tci-field-value">{{ item.input }}</span>
+                      </div>
+                    </div>
+                    <div class="tci-field">
+                      <span class="tci-field-icon">&#x1F3AF;</span>
+                      <div>
+                        <span class="tci-field-label">Expected</span>
+                        <span class="tci-field-value">{{ item.expected }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
