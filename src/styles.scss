@@ -682,3 +682,36 @@ body {
     font-size: 0.82rem;
   }
 }
+
+
+/*neutrinos logo*/
+.empty-icon {
+  width: 140px;   /* try 20px if you want very tiny */
+  height: 140px;
+  object-fit: contain;
+}
+
+
+/*error message*/
+.error-message {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(220, 38, 38, 0.08);
+  border: 1px solid rgba(220, 38, 38, 0.25);
+  border-left: 4px solid #dc2626;
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin-top: 16px;
+}
+
+.error-icon {
+  font-size: 1.2rem;
+}
+
+.error-message p {
+  color: #fca5a5;
+  font-size: 0.88rem;
+  margin: 0;
+  line-height: 1.5;
+}

@@ -12,7 +12,7 @@
         </div>
 
         <div class="textarea-group">
-          <label class="input-label">&#x1F4C4; Input / Feature Description</label>
+          <label class="input-label">&#x1F4C4; User Story / FSD / Feature Description </label>
           <textarea class="styled-textarea" placeholder="Describe your feature or paste input here..." [(ngModel)]="page.story"></textarea>
         </div>
 
@@ -25,6 +25,17 @@
           <button class="btn btn-analyse" (click)="analyse()">&#x1F50D; Analyse</button>
           <button class="btn btn-generate" (click)="generateCase()">&#x26A1; Generate Test Cases</button>
         </div>
+      </div>
+
+
+      <div class="error-message" *ngIf="page.result?.message">
+        <span class="error-icon">&#x26A0;&#xFE0F;</span>
+        <p>{{ page.result?.message }}</p>
+      </div>
+
+      <div class="error-message" *ngIf="page.testCases?.message">
+        <span class="error-icon">&#x26A0;&#xFE0F;</span>
+        <p>{{ page.testCases?.message }}</p>
       </div>
     </div>
     <div class="right-section">
@@ -39,7 +50,9 @@
 
           <!-- Empty State — hide when either result or testCases exists -->
           <div class="empty-state" *ngIf="!page.result &amp;&amp; !page.testCases">
-            <div class="empty-icon">&#x1F916;</div>
+            <!-- <div class="empty-icon">🤖</div> -->
+            <img src="/assets/Web/Icons/neutrinosLogoSilver.png" alt="empty state" class="empty-icon">
+
             <p>Your analysis will appear here...</p>
             <span>Click &quot;Analyze&quot; to begin</span>
           </div>
