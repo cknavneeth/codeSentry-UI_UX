@@ -4,6 +4,7 @@
 //append_imports_start
 
 import { Component, Injector } from '@angular/core'; //_splitter_
+import { MatSnackBar } from '@angular/material/snack-bar'; //_splitter_
 import { SDPageCommonService } from 'app/n-services/sd-page-common.service'; //_splitter_
 import { SDBaseService } from 'app/n-services/SDBaseService'; //_splitter_
 import { NeuServiceInvokerService } from 'app/n-services/service-caller.service'; //_splitter_
@@ -130,17 +131,50 @@ export class sentry_compComponent {
       const page = this.page;
       bh.input.url = `http://localhost:8081/api/analyze`;
 
+      bh.local.userInput = true;
+      if (!page.story || !page.snippet) {
+        bh.local.userInput = false;
+      }
+
       bh.input.body = {
         story: page.story,
         snippet: page.snippet,
       };
 
       console.log('page.story', page.story);
-      bh = this.sd_DrKASgX39TEYpww3(bh);
+      bh = this.sd_VD6WArHuK373qmaa(bh);
       //appendnew_next_sd_u3pZHKZ8XtHhILZa
       return bh;
     } catch (e) {
       return this.errorHandler(bh, e, 'sd_u3pZHKZ8XtHhILZa');
+    }
+  }
+
+  sd_VD6WArHuK373qmaa(bh) {
+    try {
+      if (
+        this.sdService.operators['true'](
+          bh.local.userInput,
+          undefined,
+          undefined,
+          undefined
+        )
+      ) {
+        bh = this.sd_DrKASgX39TEYpww3(bh);
+      } else if (
+        this.sdService.operators['false'](
+          bh.local.userInput,
+          undefined,
+          undefined,
+          undefined
+        )
+      ) {
+        bh = this.sd_o2Bbo7sx1JEDFDNm(bh);
+      }
+
+      return bh;
+    } catch (e) {
+      return this.errorHandler(bh, e, 'sd_VD6WArHuK373qmaa');
     }
   }
 
@@ -186,20 +220,69 @@ export class sentry_compComponent {
     }
   }
 
+  sd_o2Bbo7sx1JEDFDNm(bh) {
+    try {
+      this.__page_injector__.get(MatSnackBar).open('inputs are missing', '', {
+        duration: 3000,
+        direction: 'ltr',
+        horizontalPosition: 'right',
+        verticalPosition: 'top',
+      });
+      //appendnew_next_sd_o2Bbo7sx1JEDFDNm
+      return bh;
+    } catch (e) {
+      return this.errorHandler(bh, e, 'sd_o2Bbo7sx1JEDFDNm');
+    }
+  }
+
   sd_Q8Lf0y4d7qCh1B68(bh) {
     try {
       const page = this.page;
       bh.input.url = `http://localhost:8081/api/generateCase`;
 
+      bh.local.userInput = true;
+
+      if (!page.story || !page.snippet) {
+        bh.local.userInput = false;
+      }
+
       bh.input.body = {
         story: page.story,
         snippet: page.snippet,
       };
-      bh = this.sd_pLiHHYfPykTTxUOJ(bh);
+      bh = this.sd_Eyl9oCNKmbBNaR8J(bh);
       //appendnew_next_sd_Q8Lf0y4d7qCh1B68
       return bh;
     } catch (e) {
       return this.errorHandler(bh, e, 'sd_Q8Lf0y4d7qCh1B68');
+    }
+  }
+
+  sd_Eyl9oCNKmbBNaR8J(bh) {
+    try {
+      if (
+        this.sdService.operators['true'](
+          bh.local.userInput,
+          undefined,
+          undefined,
+          undefined
+        )
+      ) {
+        bh = this.sd_pLiHHYfPykTTxUOJ(bh);
+      } else if (
+        this.sdService.operators['false'](
+          bh.local.userInput,
+          undefined,
+          undefined,
+          undefined
+        )
+      ) {
+        bh = this.sd_L4ecolGLKS8jahx7(bh);
+      }
+
+      return bh;
+    } catch (e) {
+      return this.errorHandler(bh, e, 'sd_Eyl9oCNKmbBNaR8J');
     }
   }
 
@@ -242,6 +325,21 @@ export class sentry_compComponent {
       return bh;
     } catch (e) {
       return this.errorHandler(bh, e, 'sd_SLixwHNifSC0IeuS');
+    }
+  }
+
+  sd_L4ecolGLKS8jahx7(bh) {
+    try {
+      this.__page_injector__.get(MatSnackBar).open('inputs are missing', '', {
+        duration: 3000,
+        direction: 'ltr',
+        horizontalPosition: 'right',
+        verticalPosition: 'top',
+      });
+      //appendnew_next_sd_L4ecolGLKS8jahx7
+      return bh;
+    } catch (e) {
+      return this.errorHandler(bh, e, 'sd_L4ecolGLKS8jahx7');
     }
   }
 
